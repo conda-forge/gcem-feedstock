@@ -1,5 +1,5 @@
 {% set name = "gcem" %}
-{% set version = "1.15.0" %}
+{% set version = "1.16.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/kthohr/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: ec570f4c4e4dab9a9e929b61fd9cc06303f4bd7943e5489e62fdd577016323b1
+  sha256: 119c742b9371c0adc7d9cd710c3cbc575459a98fb63f6be4c636215dcf8404ce
 
 build:
   number: 0
