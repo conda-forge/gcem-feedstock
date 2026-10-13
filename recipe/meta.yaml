@@ -14,6 +14,10 @@ source:
 
 build:
   number: 1
+  # Header-only: the installed headers and CMake config are identical on every
+  # platform; only the file layout differs (Library\ prefix on Windows), so one
+  # noarch variant is built per OS family (see noarch_platforms in conda-forge.yml).
+  noarch: generic
 
 requirements:
   build:
@@ -21,13 +25,16 @@ requirements:
     - {{ stdlib("c") }}
     - cmake
     - make  # [unix]
+  run:
+    - __unix  # [unix]
+    - __win  # [win]
 
 test:
   commands:
     - test -f ${PREFIX}/include/gcem.hpp  # [unix]
     - test -f ${PREFIX}/lib/cmake/gcem/gcemConfig.cmake  # [unix]
-    - if exist %LIBRARY_PREFIX%\include\gcem.hpp (exit 0) else (exit 1)  # [win]
-    - if exist %LIBRARY_PREFIX%\lib\cmake\gcemConfig.cmake (exit 0) else (exit 1)  # [win]
+    - if not exist %LIBRARY_PREFIX%\include\gcem.hpp exit 1  # [win]
+    - if not exist %LIBRARY_PREFIX%\lib\cmake\gcem\gcemConfig.cmake exit 1  # [win]
 
 about:
   home: https://github.com/kthohr/gcem
