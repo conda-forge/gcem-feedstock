@@ -1,0 +1,16 @@
+Raise cmake_minimum_required from 3.1 to 3.10: CMake 4 removed compatibility with
+versions below 3.5, so configuring gcem 1.18.0 fails. Equivalent to the unmerged
+upstream PRs kthohr/gcem#54 and kthohr/gcem#58.
+
+diff -ruN a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	2024-04-28 11:42:22.000000000 -0400
++++ b/CMakeLists.txt	2026-09-14 17:25:46.407370409 -0400
+@@ -18,7 +18,7 @@
+ ##
+ ################################################################################
+ 
+-cmake_minimum_required(VERSION 3.1)
++cmake_minimum_required(VERSION 3.10)
+ project(gcem)
+ 
+ set(GCEM_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
